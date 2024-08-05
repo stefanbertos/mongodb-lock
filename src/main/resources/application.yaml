@@ -1,0 +1,22 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: test
+
+  threads:
+    virtual:
+      enabled: true
+
+logging:
+  level:
+    root: info
+    com.example.locking: debug
+
+# Customize scheduling settings if necessary
+scheduling:
+  tasks:
+    cleanupExpiredLocks:
+      fixed-rate: 60000 # Run every 60 seconds (in milliseconds)
+
