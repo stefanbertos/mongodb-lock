@@ -39,11 +39,15 @@ public class LockService {
         );
 
         Update update = new Update();
+        update.set("id", documentId);
         update.set("locked", true);
         update.set("lockTimestamp", now);
 
+        var findAndModifyOptions = new FindAndModifyOptions();
+
+
         // Use upsert to create the document if it does not exist and lock it
-        Lock lockedDocument = mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().upsert(true), Lock.class);
+        Lock lockedDocument = mongoTemplate.findAndModify(query, update,findAndModifyOptions.upsert(true), Lock.class);
 
         if (lockedDocument == null) {
             log.warn("Failed to acquire lock for documentId: {}", documentId);

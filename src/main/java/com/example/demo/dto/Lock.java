@@ -11,7 +11,7 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "locks")
+@Document(collection = "lock")
 public class Lock {
     @Id
     private String id;
